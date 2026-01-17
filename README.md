@@ -26,7 +26,7 @@ Feel free to follow along or contribute! :contentReference[oaicite:2]{index=2}
 
 ## 📁 Project Structure
 
-JavaChatApp/
+JavaChatApp
 ├── src/
 │ └── mychatapp/
 │ ├── ChatServer.java
@@ -35,8 +35,7 @@ JavaChatApp/
 ├── manifest.mf
 └── README.md
 
-yaml
-Copy code
+
 
 ---
 
@@ -44,8 +43,8 @@ Copy code
 
 Make sure you have the following installed:
 
-✔️ Java (JDK 8 or higher)  
-✔ A Java IDE (IntelliJ, Eclipse, VS Code) or command‑line setup
+-- ✔️ Java (JDK 8 or higher)  
+-- ✔ A Java IDE (IntelliJ, Eclipse, VS Code) or command‑line setup
 
 ---
 
@@ -58,35 +57,29 @@ Make sure you have the following installed:
    javac ChatServer.java
 Run it:
 
-bash
-Copy code
-java ChatServer
+-- java ChatServer
 Run the Client
 Compile the client:
 
-bash
-Copy code
-javac ChatClient.java
+-- ChatClient.java
 Run it:
-
-bash
-Copy code
 java ChatClient
 Now type messages in the client console to send them to the server.
 
-📈 Future Improvements
-✔️ Add support for handling multiple clients
-✔️ Add a GUI using Swing or JavaFX
-✔️ Add message history support
-✔️ Deploy as a runnable jar
 
-🙌 Contributing
-This is a personal learning project — but contributions are welcome!
-If you have ideas or improvements, feel free to open an issue or pull request.
+## 📈 Future Improvements
+-- ✔️ Add support for handling multiple clients
+-- ✔️ Add a GUI using Swing or JavaFX
+-- ✔️ Add message history support
+-- ✔️ Deploy as a runnable jar
 
-📬 Connect with Me
-If you want to follow my progress or see other projects:
-👉 https://github.com/sasindusachintha
+## 🙌 Contributing
+-- This is a personal learning project — but contributions are welcome!
+-- If you have ideas or improvements, feel free to open an issue or pull request.
 
-⭐ Thanks for checking out my JavaChatApp!
-Keep learning and keep coding 👨‍💻✨
+## 📬 Connect with Me
+-- If you want to follow my progress or see other projects:
+-- 👉 https://github.com/sasindusachintha
+
+## ⭐ Thanks for checking out my JavaChatApp!
+-- Keep learning and keep coding 👨‍💻✨
