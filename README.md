@@ -1,7 +1,7 @@
 # JavaChatApp 🚀
 
 A simple **Java Chat Application (Server + Client)** built with Java’s socket programming.  
-This project is a *work in progress* — updated daily as I learn and improve real‑time networking in Java. :contentReference[oaicite:0]{index=0}
+This project is a *work in progress* — updated daily as I learn and improve real‑time networking in Java.
 
 ---
 
