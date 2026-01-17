@@ -43,8 +43,8 @@ JavaChatApp
 
 Make sure you have the following installed:
 
--- ✔️ Java (JDK 8 or higher)  
--- ✔ A Java IDE (IntelliJ, Eclipse, VS Code) or command‑line setup
+- ✔️ Java (JDK 8 or higher)  
+- ✔ A Java IDE (IntelliJ, Eclipse, VS Code) or command‑line setup
 
 ---
 
@@ -57,29 +57,29 @@ Make sure you have the following installed:
    javac ChatServer.java
 Run it:
 
--- java ChatServer
+- java ChatServer
 Run the Client
 Compile the client:
 
--- ChatClient.java
+- ChatClient.java
 Run it:
 java ChatClient
 Now type messages in the client console to send them to the server.
 
 
 ## 📈 Future Improvements
--- ✔️ Add support for handling multiple clients
--- ✔️ Add a GUI using Swing or JavaFX
--- ✔️ Add message history support
--- ✔️ Deploy as a runnable jar
+- ✔️ Add support for handling multiple clients
+- ✔️ Add a GUI using Swing or JavaFX
+- ✔️ Add message history support
+- ✔️ Deploy as a runnable jar
 
 ## 🙌 Contributing
--- This is a personal learning project — but contributions are welcome!
--- If you have ideas or improvements, feel free to open an issue or pull request.
+- This is a personal learning project — but contributions are welcome!
+- If you have ideas or improvements, feel free to open an issue or pull request.
 
 ## 📬 Connect with Me
--- If you want to follow my progress or see other projects:
--- 👉 https://github.com/sasindusachintha
+- If you want to follow my progress or see other projects:
+- 👉 https://github.com/sasindusachintha
 
 ## ⭐ Thanks for checking out my JavaChatApp!
 -- Keep learning and keep coding 👨‍💻✨
