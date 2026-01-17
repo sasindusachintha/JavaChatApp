@@ -27,8 +27,8 @@ Feel free to follow along or contribute! :contentReference[oaicite:2]{index=2}
 ## 📁 Project Structure
 
 JavaChatApp
-├── src/
-│ └── mychatapp/
+├── src
+│ └── mychatapp
 │ ├── ChatServer.java
 │ └── ChatClient.java
 ├── build.xml
@@ -82,4 +82,4 @@ Now type messages in the client console to send them to the server.
 - 👉 https://github.com/sasindusachintha
 
 ## ⭐ Thanks for checking out my JavaChatApp!
--- Keep learning and keep coding 👨‍💻✨
+- Keep learning and keep coding 👨‍💻✨
