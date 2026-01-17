@@ -17,9 +17,14 @@ public class ChatServer {
        System.out.println("Client connected.");
        
         BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream())); 
-        String message = reader.readLine();
-        System.out.println("Client says: "+ message);
-       
+         
+        while(true){
+               String message = reader.readLine();
+               if (message.equalsIgnoreCase("exit")){
+                   break ;
+               }
+               System.out.println("Client says: "+ message);
+        }
        client.close();
        server.close();
        
