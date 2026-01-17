@@ -28,11 +28,17 @@ Feel free to follow along or contribute! :contentReference[oaicite:2]{index=2}
 
 JavaChatApp
 ├── src
+
 │ └── mychatapp
+
 │ ├── ChatServer.java
+
 │ └── ChatClient.java
+
 ├── build.xml
+
 ├── manifest.mf
+
 └── README.md
 
 
