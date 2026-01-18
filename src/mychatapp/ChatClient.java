@@ -13,7 +13,7 @@ public class ChatClient {
         try{
         Socket socket = new Socket("localhost", 5000);
        
-          PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader console = new BufferedReader( new InputStreamReader(System.in));
         String input;
         while(true){

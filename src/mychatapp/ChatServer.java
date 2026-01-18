@@ -12,21 +12,18 @@ public class ChatServer {
        try{
        ServerSocket server= new ServerSocket(5000);
    
+       while(true){
        Socket client = server.accept();
        
        System.out.println("Client connected.");
+       ClientHandler handler = new ClientHandler(client);
+       Thread t = new Thread(handler);
+       t.start();
        
-        BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream())); 
-         
-        while(true){
-               String message = reader.readLine();
-               if (message.equalsIgnoreCase("exit")){
-                   break ;
-               }
-               System.out.println("Client says: "+ message);
-        }
-       client.close();
-       server.close();
+  
+       }
+       
+
        
    }catch(IOException e){
        e.printStackTrace();
