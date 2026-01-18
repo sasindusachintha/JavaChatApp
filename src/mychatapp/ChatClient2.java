@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 
+
 public class ChatClient2 {
     public static void main(String[] args){
         try{
@@ -14,6 +15,20 @@ public class ChatClient2 {
             
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            
+            Thread readerThread = new Thread(() ->{
+                try{
+                    String msg;
+                while((msg = serverReader.readLine()) != null){
+                System.out.println(msg);
+            }
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            });
+            readerThread.start();
+            
             String input;
             while(true){
                 input = console.readLine();
