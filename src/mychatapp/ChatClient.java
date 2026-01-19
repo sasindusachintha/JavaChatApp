@@ -37,13 +37,13 @@ public class ChatClient {
             input = console.readLine();
          
             if(input.equalsIgnoreCase("exit")){
-                
-                socket.close();
+                writer.println(input);
+                Thread.sleep(100);
                 break;
             }
             writer.println(input);
         }
-        readerThread.join();
+        socket.close();
         
         
     }catch(IOException | InterruptedException e){

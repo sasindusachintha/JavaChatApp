@@ -41,7 +41,7 @@ public class ClientHandler implements Runnable {
              if(message.equalsIgnoreCase("exit")){
                 String leaveMsg = getTimeStamp() + " " + username + " left the chat!";
                 System.out.println(leaveMsg);
-                broadcast(leaveMsg);
+                broadcastToAll(leaveMsg);
                 break;
              }
              System.out.println(getTimeStamp() + " " + username +" says :" + message);
@@ -61,6 +61,12 @@ public class ClientHandler implements Runnable {
                client.writer.println(message);
            }
            }
+      }
+      
+      private void broadcastToAll(String message){
+          for (ClientHandler client : clientList){
+              client.writer.println(message);
+          }
       }
       
       private String getTimeStamp(){
