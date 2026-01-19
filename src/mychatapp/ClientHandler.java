@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class ClientHandler implements Runnable {
@@ -30,17 +32,20 @@ public class ClientHandler implements Runnable {
          
          clientList.add(this);
          
-         String joinMsg = username + " joined the chat!";
+         String joinMsg = getTimeStamp() +" " +username + " joined the chat!";
          System.out.println( joinMsg) ;
          broadcast (joinMsg);
           
          String message;
          while((message = reader.readLine()) != null){
              if(message.equalsIgnoreCase("exit")){
-                 break;
+                String leaveMsg = getTimeStamp() + " " + username + " left the chat!";
+                System.out.println(leaveMsg);
+                broadcast(leaveMsg);
+                break;
              }
-             System.out.println(username +" says :" + message);
-             broadcast(username + ": " + message);
+             System.out.println(getTimeStamp() + " " + username +" says :" + message);
+             broadcast(getTimeStamp() + " " + username + ": " + message);
          }
          reader.close();
          writer.close();
@@ -57,4 +62,11 @@ public class ClientHandler implements Runnable {
            }
            }
       }
+      
+      private String getTimeStamp(){
+          LocalTime time = LocalTime.now();
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+          return "[" + time.format(formatter) + "]";
+      }
+      
 }
