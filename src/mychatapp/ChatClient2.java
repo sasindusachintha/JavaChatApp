@@ -17,7 +17,7 @@ public class ChatClient2 {
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter Your username: ");
             String username = console.readLine();
-
+            writer.println(username);
             
             BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
