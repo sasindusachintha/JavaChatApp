@@ -15,6 +15,10 @@ public class ChatClient2 {
             
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("Enter Your username: ");
+            String username = console.readLine();
+
+            
             BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
             Thread readerThread = new Thread(() ->{
@@ -24,7 +28,7 @@ public class ChatClient2 {
                 System.out.println(msg);
             }
                 }catch(IOException e){
-                    e.printStackTrace();
+                    
                 }
             });
             readerThread.start();
@@ -32,13 +36,14 @@ public class ChatClient2 {
             String input;
             while(true){
                 input = console.readLine();
-                writer.println(input);
                 if(input.equalsIgnoreCase("exit")){
+                    socket.close();
                     break ;
                 }
+                writer.println(input);
             }
-           socket.close();
-        }catch(IOException e){
+           readerThread.join();
+        }catch(IOException | InterruptedException e){
             e.printStackTrace();
         }
     }

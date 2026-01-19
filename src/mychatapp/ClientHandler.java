@@ -12,6 +12,7 @@ import java.util.List;
 public class ClientHandler implements Runnable {
      private Socket clientSocket;
      private PrintWriter writer;
+     private String username;
      
      private static List<ClientHandler> clientList = new ArrayList<>();
        
@@ -19,25 +20,27 @@ public class ClientHandler implements Runnable {
          this.clientSocket = socket;
         
      }     
-     
-   
-     
-
      @Override
      public void run(){
          try{
          BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
          writer = new PrintWriter(clientSocket.getOutputStream(), true);
          
-          clientList.add(this);
+         username = reader.readLine();
+         
+         clientList.add(this);
+         
+         String joinMsg = username + " joined the chat!";
+         System.out.println( joinMsg) ;
+         broadcast (joinMsg);
           
          String message;
          while((message = reader.readLine()) != null){
              if(message.equalsIgnoreCase("exit")){
                  break;
              }
-             System.out.println("Client says: "+ message);
-             broadcast(message) ;
+             System.out.println(username +" says :" + message);
+             broadcast(username + ": " + message);
          }
          reader.close();
          writer.close();
