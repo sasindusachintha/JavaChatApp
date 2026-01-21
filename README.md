@@ -34,6 +34,7 @@ JavaChatApp
 │ ├── ChatServer.java
 
 │ └── ChatClient.java
+  └── ChatClient2.java
 
 ├── build.xml
 
