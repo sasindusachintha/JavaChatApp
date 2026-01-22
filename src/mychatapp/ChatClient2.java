@@ -11,29 +11,29 @@ import java.io.InputStreamReader;
 public class ChatClient {
     public static void main(String[] args){
         try{
-        Socket socket = new Socket("localhost", 5000);
+         Socket socket = new Socket("localhost", 5000);
        
-        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader console = new BufferedReader( new InputStreamReader(System.in));
+         PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+         BufferedReader console = new BufferedReader( new InputStreamReader(System.in));
          System.out.println("Enter your username: ");
          String username = console.readLine();
          writer.println(username);
           
-        BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+         BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
             Thread readerThread = new Thread(() ->{
                 try{
                     String msg;
                 while((msg = serverReader.readLine()) != null){
                 System.out.println(msg);
-            }
+             }
                 }catch(IOException e){
                    
                 }
             });
             readerThread.start();
-        String input;
-        while(true){
+         String input;
+         while(true){
             input = console.readLine();
          
             if(input.equalsIgnoreCase("exit")){
@@ -42,12 +42,12 @@ public class ChatClient {
                 break;
             }
             writer.println(input);
-        }
+         }
         socket.close();
         
         
-    }catch(IOException | InterruptedException e){
+     }catch(IOException | InterruptedException e){
         e.printStackTrace();
-    }
-}
-}
+     }
+ }
+ }

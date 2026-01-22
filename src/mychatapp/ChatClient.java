@@ -26,23 +26,23 @@ public class ChatClient {
                     String msg;
                 while((msg = serverReader.readLine()) != null){
                 System.out.println(msg);
-            }
+             }
                 }catch(IOException e){
                    
                 }
-            });
+             });
             readerThread.start();
-        String input;
-        while(true){
+         String input;
+         while(true){
             input = console.readLine();
          
-            if(input.equalsIgnoreCase("exit")){
+             if(input.equalsIgnoreCase("exit")){
                 writer.println(input);
                 Thread.sleep(100);
                 break;
-            }
+             }
             writer.println(input);
-        }
+         }
         socket.close();
         
         
