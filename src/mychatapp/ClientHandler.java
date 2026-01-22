@@ -50,6 +50,9 @@ public class ClientHandler implements Runnable {
                  continue;
              }
              
+             if(message.trim().isEmpty()){
+                 continue;
+             }
              System.out.println(getTimeStamp() + " " + username +" says :" + message);
              broadcast(getTimeStamp() + " " + username + ": " + message);
          }
@@ -81,7 +84,7 @@ public class ClientHandler implements Runnable {
           return "[" + time.format(formatter) + "]";
       }
        
-      private ClientHandler getClientByUsrname(String name){
+      private ClientHandler getClientByUsername(String name){
           for( ClientHandler client : clientList){
               if(client.username.equalsIgnoreCase(name)){
                   return client;
@@ -97,6 +100,19 @@ public class ClientHandler implements Runnable {
               writer.println(" !! Usage: /pm username message");
               return;
           }
+          
+          String targetUsername = parts[1];
+          String privateMsg = parts[2];
+          
+          ClientHandler targetClient = getClientByUsername(targetUsername);
+          
+          if (targetClient == null){
+              writer.println("!! User " + targetUsername + "not found.");
+              return;
+          }
+          
+          String msg = getTimeStamp()+ " PM from " + username + ": " + privateMsg;
+          targetClient.writer.println(msg);
       }
       
 }

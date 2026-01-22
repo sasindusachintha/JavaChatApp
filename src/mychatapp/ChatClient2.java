@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
         
-public class ChatClient {
+public class ChatClient2 {
     public static void main(String[] args){
         try{
          Socket socket = new Socket("localhost", 5000);
