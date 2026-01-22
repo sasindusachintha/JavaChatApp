@@ -34,6 +34,7 @@ JavaChatApp
 │ ├── ChatServer.java
 
 │ └── ChatClient.java
+  └── ChatClient2.java
 
 ├── build.xml
 
@@ -86,6 +87,9 @@ Now type messages in the client console to send them to the server.
 ## 📬 Connect with Me
 - If you want to follow my progress or see other projects:
 - 👉 https://github.com/sasindusachintha
+
+## 📄 License
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
 
 ## ⭐ Thanks for checking out my JavaChatApp!
 - Keep learning and keep coding 👨‍💻✨
