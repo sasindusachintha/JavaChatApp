@@ -44,6 +44,12 @@ public class ClientHandler implements Runnable {
                 broadcastToAll(leaveMsg);
                 break;
              }
+             
+             if (message.startsWith("/pm ")){
+                 handlePrivateMessage(message);
+                 continue;
+             }
+             
              System.out.println(getTimeStamp() + " " + username +" says :" + message);
              broadcast(getTimeStamp() + " " + username + ": " + message);
          }
@@ -73,6 +79,24 @@ public class ClientHandler implements Runnable {
           LocalTime time = LocalTime.now();
           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
           return "[" + time.format(formatter) + "]";
+      }
+       
+      private ClientHandler getClientByUsrname(String name){
+          for( ClientHandler client : clientList){
+              if(client.username.equalsIgnoreCase(name)){
+                  return client;
+              }
+          }
+          return null;
+      }
+      
+      private void handlePrivateMessage(String message){
+          String[] parts = message.split(" ", 3);
+          
+          if (parts.length > 3){
+              writer.println(" !! Usage: /pm username message");
+              return;
+          }
       }
       
 }
