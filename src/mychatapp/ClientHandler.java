@@ -69,9 +69,7 @@ public class ClientHandler implements Runnable {
 
     private void broadcast(String message) {
         for (ClientHandler client : clientList) {
-            
                 client.writer.println(message);
-            
         }
     }
 
