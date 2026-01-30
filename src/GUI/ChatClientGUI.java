@@ -34,7 +34,7 @@ public class ChatClientGUI extends javax.swing.JFrame {
           jTextField1.addActionListener(evt -> sendMessage());
     }
 
-    private void connectToServer() {
+    private void connectToServer(){
         try {
             socket = new Socket("localhost", 5000);
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -45,10 +45,10 @@ public class ChatClientGUI extends javax.swing.JFrame {
 
             startReaderThread();
 
-        } catch (IOException e) {
+         } catch (IOException e){
             JOptionPane.showMessageDialog(this, "Server Not Reachable");
-        }
-    }
+         }
+     }
 
     private void startReaderThread() {
         Thread t = new Thread(() -> {
@@ -159,12 +159,12 @@ public class ChatClientGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
          
            
-           private void sendMessage(){
-               String  msg = jTextField1.getText().trim();
-        if(!msg.isEmpty()){
+      private void sendMessage(){
+         String  msg = jTextField1.getText().trim();
+         if(!msg.isEmpty()){
           writer.println(msg);
           jTextField1.setText("");
-        }
+         }
            }
            
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
