@@ -1,7 +1,7 @@
 ## 📸 Application Screenshots
 
 ### 🖥️ Login Screen
-![Login Screen](images/Asking for username.png)
+![Login Screen](JavaChatApp/images/Asking for username.png)
 
 ### 💬 Chat Window
 ![Chat Window](images/ChatUI.png)
