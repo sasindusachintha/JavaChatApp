@@ -4,7 +4,7 @@
 ![Login Screen](images/Asking for username.png)
 
 ### 💬 Chat Window
-![Chat Window](images/chatUI.png)
+![Chat Window](images/ChatUI.png)
 
 ### 🧑‍💻 Server Console
 ![Server Console](images/server.png)
