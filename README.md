@@ -94,10 +94,10 @@ Now type messages in the client console to send them to the server.
 ## 📸 Application Screenshots
 
 ### 🖥️ Login Screen
-![Login Screen](JavaChatApp/images/Asking for username.png)
+![Login Screen](images/Asking for username.jpg)
 
 ### 💬 Chat Window
-![Chat Window](images/ChatUI.png)
+![Chat Window](images/ChatUI.jpg)
 
 ### 🧑‍💻 Server Console
 ![Server Console](images/server.png)
