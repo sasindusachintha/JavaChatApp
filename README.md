@@ -89,6 +89,24 @@ Now type messages in the client console to send them to the server.
 - If you want to follow my progress or see other projects:
 - 👉 https://github.com/sasindusachintha
 
+---
+
+## 📸 Application Screenshots
+
+### 🖥️ Login Screen
+![Chat Window](images/Asking for username.jpg)
+
+### 💬 Chat Window
+![Chat Window](images/ChatUI.jpg)
+
+### 🧑‍💻 Server Console
+![Server Console](images/server.png)
+
+### 👤 Client GUI
+![Client GUI](images/client.png)
+
+---
+
 ## 📄 License
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
 
