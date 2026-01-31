@@ -94,7 +94,7 @@ Now type messages in the client console to send them to the server.
 ## 📸 Application Screenshots
 
 ### 🖥️ Login Screen
-![Chat Window](images/Asking for username.jpg)
+![Chat Window](images/login.jpg)
 
 ### 💬 Chat Window
 ![Chat Window](images/ChatUI.jpg)
