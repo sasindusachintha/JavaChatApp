@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class ChatClient2 {
+public class ChatClient {
 
     public static void main(String[] args) {
         try {

@@ -30,11 +30,11 @@ public class ChatClientGUI extends javax.swing.JFrame {
     public ChatClientGUI() {
         initComponents();
         connectToServer();
-        
-          jTextField1.addActionListener(evt -> sendMessage());
+
+        jTextField1.addActionListener(evt -> sendMessage());
     }
 
-    private void connectToServer(){
+    private void connectToServer() {
         try {
             socket = new Socket("localhost", 5000);
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -45,30 +45,46 @@ public class ChatClientGUI extends javax.swing.JFrame {
 
             startReaderThread();
 
-         } catch (IOException e){
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Server Not Reachable");
-         }
-     }
+        }
+    }
 
     private void startReaderThread() {
         Thread t = new Thread(() -> {
             try {
                 String msg;
+
                 while ((msg = reader.readLine()) != null) {
+
+                    // 🔹 Handle user list update
+                    if (msg.startsWith("/updateUsers ")) {
+                        String[] users = msg.substring(13).split(",");
+
+                        javax.swing.SwingUtilities.invokeLater(() -> {
+                            onlineUsersList.setListData(users);
+                        });
+
+                        continue;
+                    }
+
+                    // 🔹 Normal chat message
                     String finalMsg = msg;
-                    
                     javax.swing.SwingUtilities.invokeLater(() -> {
-                        jTextArea1.append(finalMsg  + " \n");
-                       
-                        jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+                        jTextArea1.append(finalMsg + "\n");
+                        jTextArea1.setCaretPosition(
+                                jTextArea1.getDocument().getLength()
+                        );
                     });
                 }
+
             } catch (IOException e) {
                 javax.swing.SwingUtilities.invokeLater(() -> {
-                     jTextArea1.append("Disconnected from server \n"); 
+                    jTextArea1.append("Disconnected from server\n");
                 });
-            }      
+            }
         });
+
         t.start();
     }
 
@@ -87,6 +103,9 @@ public class ChatClientGUI extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        onlineUsersList = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,27 +132,46 @@ public class ChatClientGUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(102, 204, 0));
         jLabel2.setText("by Sasi");
 
+        onlineUsersList.setBackground(new java.awt.Color(102, 255, 0));
+        onlineUsersList.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        onlineUsersList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(onlineUsersList);
+
+        jLabel3.setBackground(new java.awt.Color(51, 255, 0));
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setText("Online Users:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(205, 205, 205)
+                        .addComponent(jLabel2)
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(72, 72, 72))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,8 +180,14 @@ public class ChatClientGUI extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,16 +201,15 @@ public class ChatClientGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-         
-           
-      private void sendMessage(){
-         String  msg = jTextField1.getText().trim();
-         if(!msg.isEmpty()){
-          writer.println(msg);
-          jTextField1.setText("");
-         }
-           }
-           
+
+    private void sendMessage() {
+        String msg = jTextField1.getText().trim();
+        if (!msg.isEmpty()) {
+            writer.println(msg);
+            jTextField1.setText("");
+        }
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sendMessage();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -200,8 +243,11 @@ public class ChatClientGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JList<String> onlineUsersList;
     // End of variables declaration//GEN-END:variables
 }

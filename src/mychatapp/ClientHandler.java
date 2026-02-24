@@ -32,7 +32,8 @@ public class ClientHandler implements Runnable {
             username = reader.readLine();
 
             clientList.add(this);
-
+            updateAllClientsUserList();
+            
             String joinMsg = getTimeStamp() + " " + username + " joined the chat!";
             System.out.println(joinMsg);
             broadcast(joinMsg);
@@ -61,6 +62,7 @@ public class ClientHandler implements Runnable {
             reader.close();
             writer.close();
             clientList.remove(this);
+            updateAllClientsUserList();
             clientSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,7 +71,7 @@ public class ClientHandler implements Runnable {
 
     private void broadcast(String message) {
         for (ClientHandler client : clientList) {
-                client.writer.println(message);
+            client.writer.println(message);
         }
     }
 
@@ -116,4 +118,14 @@ public class ClientHandler implements Runnable {
         targetClient.writer.println(msg);
     }
 
+    private void updateAllClientsUserList() {
+        StringBuilder users = new StringBuilder();
+        for (ClientHandler client : clientList) {
+            users.append(client.username).append(",");
+        }
+        String userListMsg = "/updateUsers " + users.toString();
+        for (ClientHandler client : clientList) {
+            client.writer.println(userListMsg);
+        }
+    }
 }
