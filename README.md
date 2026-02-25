@@ -19,6 +19,8 @@ It allows a client to connect to a server and send messages. My goal with this p
 ✔️ Multi‑client support   
 ✔️ GUI interface  
 ✔️ Message broadcast to all clients
+✔️ Online User List
+
  - Still updating...
 
 Feel free to follow along or contribute! :contentReference[oaicite:2]{index=2}
